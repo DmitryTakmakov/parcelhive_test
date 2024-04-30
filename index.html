@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse tracker</title>
+</head>
+<body>
+<div>
+    <h1>Mouse coordinates:</h1>
+    <h2 id="ws-data">{"x": 0, "y": 0}</h2>
+    <p>To take a photo with a connected webcam press the left mouse button.</p>
+    <p>To stop tracking press the right mouse button.</p>
+</div>
+</body>
+<script>
+  const socket = new WebSocket('ws://localhost:8899');
+  socket.onmessage = (message) => {
+    let div = document.getElementById('ws-data');
+    div.innerText = message.data;
+  }
+</script>
+</html>
